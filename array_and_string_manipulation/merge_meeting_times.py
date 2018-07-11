@@ -1,6 +1,5 @@
 def merge_ranges(meetings):
-
-    # Merge meeting ranges
+    """Merge meeting ranges"""
     meetings.sort()
     all_meetings = [meetings[0]]
     
