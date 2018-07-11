@@ -1,1 +1,1 @@
-# algorithms
+Solutions to algorithm problems.
