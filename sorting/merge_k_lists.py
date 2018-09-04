@@ -1,9 +1,9 @@
 import heapq
 
 def merge_k_lists(lsts):
-    """Given k sorted lists, merge into one sorted list."""
+    """Given a list of k sorted lists, merge into one sorted list."""
     k = len(lsts)
-    indices = [0 for _ in xrange(k)]
+    indices = [0 for i in xrange(k)]
     merged = []
     compare_nums = []
 
