@@ -1,5 +1,6 @@
 """
-Given an ordered list of numbers and a number, return the index of the largest number in the list that is smaller than that number.
+Given an ordered list of numbers and a number, return the index of the largest 
+number in the list that is smaller than that number.
 
 For example:
 

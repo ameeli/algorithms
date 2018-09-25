@@ -16,7 +16,9 @@ def merge_k_lists(lsts):
         indices[min_idx] += 1
 
         if indices[min_idx] < len(lsts[min_idx]):
-            heapq.heappush(compare_nums, (lsts[min_idx][indices[min_idx]], min_idx))
+            lst_number = lsts[min_idx]
+            item_index = indices[min_idx]
+            heapq.heappush(compare_nums, (lst_number[item_index], min_idx))
 
     return merged
 

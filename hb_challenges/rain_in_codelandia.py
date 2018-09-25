@@ -8,8 +8,8 @@ def rain(lst):
     collected_rain = 0
 
     for i, height in enumerate(lst):
-        right_tallest = max(lst[:(i + 1)])
-        left_tallest = max(lst[i:])
+        left_tallest = max(lst[:(i + 1)])
+        right_tallest = max(lst[i:]) 
         leak_height = min(right_tallest, left_tallest)
         collected_rain += leak_height - height
 
