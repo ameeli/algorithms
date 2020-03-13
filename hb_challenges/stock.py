@@ -44,7 +44,7 @@ Io profit is possible, so return $0::
 """
 
 
-def best(prices):
+def best_initial(prices):
     """"Given a list of prices, return the maximum profit.
 
     If no profit is possible, return 0.
@@ -57,6 +57,21 @@ def best(prices):
             profit = sell_price - buy_price
             if profit > max_profit:
                 max_profit = profit
+
+    return max_profit
+
+
+def best(prices):
+    max_profit = 0
+    lowest_so_far = None
+
+    for p in prices:
+        if lowest_so_far is None or p < lowest_so_far:
+            lowest_so_far = p
+        profit = p - lowest_so_far
+
+        if profit > max_profit:
+            max_profit = profit
 
     return max_profit
 
