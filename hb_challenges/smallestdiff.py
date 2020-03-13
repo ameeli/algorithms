@@ -24,9 +24,10 @@ Gayle Laakmann McDowell, Career Cup (Palo Alto, CA). 2015.
 def smallest_diff(a, b):
     """Return smallest diff between all items in a and b.
 
-        >>> smallest_diff([10, 20, 30, 40], [15, 25, 33, 45])
+        >>> smallest_diff([10, 20, 40, 30], [15, 33, 25, 45])
         3
     """
+    b.sort()
     smallest_diff = None
 
     for n in a:
