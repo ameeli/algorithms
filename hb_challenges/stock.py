@@ -81,5 +81,5 @@ if __name__ == '__main__':
 
     print()
     if doctest.testmod().failed == 0:
-        print("\t*** ALL TESTS PASSED")
+        print("\t*** ALL TESTS PASSED.")
     print()
