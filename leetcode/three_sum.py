@@ -43,4 +43,32 @@ def three_sum(nums):
     return sums_to_zero
 
 
+def three_sum(nums):
+    """
+    Solves duplicates problem by checking that nums[i] != nums[i - 1].
+    """
+    nums.sort()
+    sums_to_zero = []
+
+    for i in range(len(nums) - 2):
+        l = i + 1
+        r = len(nums) - 1
+
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
+        while l < r and nums[i] <= 0:
+            triplet_sum = nums[i] + nums[l] + nums[r]
+            if triplet_sum > 0:
+                r -= 1
+            elif triplet_sum < 0:
+                l += 1
+            else:
+                sums_to_zero.append([nums[i], nums[l], nums[r]])
+                r -= 1
+                l += 1
+
+    return sums_to_zero
+
+
 print(three_sum([-1, 0, 1, 2, -1, -4]))
