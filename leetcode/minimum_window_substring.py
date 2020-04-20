@@ -16,7 +16,11 @@ unique minimum window in S.
 
 
 def find_substring(s, t):
+    if len(t) > len(s):
+        return ''
+
     chars_subset = []
+    found = False
     for i, char in enumerate(s):
         if char in t:
             chars_subset.append((i, char))
@@ -34,10 +38,11 @@ def find_substring(s, t):
 
         if all(item in sub_char_count for item in t_char_count) and all(
                 t_char_count[item] <= sub_char_count[item] for item in t_char_count):
+            found = True
             s_left = chars_subset[left][0]
             s_right = chars_subset[right][0]
 
-            if s_right - s_left < min_window:
+            if s_right - s_left <= min_window:
                 correct_window_left = s_left
                 correct_window_right = s_right
                 min_window = s_right - s_left
@@ -45,7 +50,9 @@ def find_substring(s, t):
         else:
             right += 1
 
-    return s[correct_window_left:correct_window_right + 1]
+    if found:
+        return s[correct_window_left:correct_window_right + 1]
+    return ''
 
 
 def track_char_count(string):
@@ -62,4 +69,5 @@ def track_char_count_tuple(list):
     return char_count
 
 
-print(find_substring('ADOBECODEBANC', 'ABC'))
+# print(find_substring('ADOBECODEBANC', 'ABC'))
+print(find_substring('ab', 'a'))
