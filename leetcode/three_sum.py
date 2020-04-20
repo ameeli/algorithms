@@ -18,7 +18,7 @@ A solution set is:
 """
 
 
-def three_sum(nums):
+def three_sum_set(nums):
     """
     Solves problem using set and tuples.
     """
@@ -65,10 +65,15 @@ def three_sum(nums):
                 l += 1
             else:
                 sums_to_zero.append([nums[i], nums[l], nums[r]])
+                while l < r and nums[l] == nums[l + 1]:
+                    l += 1
+                while l < r and nums[r] == nums[r - 1]:
+                    r -= 1
                 r -= 1
                 l += 1
 
     return sums_to_zero
 
 
-print(three_sum([-1, 0, 1, 2, -1, -4]))
+print(three_sum([-1, 0, 1, 2, -1, -4]), 'expected: [[-1, -1, 2], [-1, 0, 1]]')
+print(three_sum([-2, 0, 0, 2, 2]), 'expected: [[-2, 0, 2]]')
