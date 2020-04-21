@@ -26,9 +26,7 @@ def coin_change(coins, amount):
         for i in range(coin, amount + 1):
             min_combos[i] = min(min_combos[i], min_combos[i - coin] + 1)
 
-    if min_combos[amount] != float('inf'):
-        return min_combos[amount]
-    return -1
+    return min_combos[amount] if min_combos[amount] != float('inf') else -1
 
 
 print(coin_change([2, 4, 5], 11), 'expected: 3')
