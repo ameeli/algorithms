@@ -18,7 +18,7 @@ sure to think about optimizing runtime for indexing)::
     >>> print(circ.get_by_index(15))
     None
 
-However, the last item circles back around to the first item, 
+However, the last item circles back around to the first item,
 so you can also rotate the list and shift the indexes. Positive
 numbers rotate the list start to the right (or higher indexes)::
 
@@ -89,27 +89,45 @@ class CircularArray(object):
 
     def __init__(self):
         """Instantiate CircularArray."""
+        self.arr = []
 
     def add_item(self, item):
         """Add item to array, at the end of the current rotation."""
+        self.arr.append(item)
 
     def get_by_index(self, index):
         """Return the data at a particular index."""
+        if index < len(self.arr):
+            return self.arr[index]
+        return None
 
     def rotate(self, increment):
         """Rotate array, positive for right, negative for left.
 
         If increment is greater than list length, keep going around.
         """
+        rotated = []
+        rotate_by = abs(increment) % len(self.arr)
+
+        if increment > 0:
+            rotated.extend(self.arr[rotate_by:])
+            rotated.extend(self.arr[:rotate_by])
+        else:
+            rotated.extend(self.arr[-rotate_by:])
+            rotated.extend(self.arr[:-rotate_by])
+
+        self.arr = rotated
 
     def print_array(self):
         """Print the circular array items in order, one per line"""
+        for item in self.arr:
+            print(item)
+
 
 if __name__ == "__main__":
     print()
     import doctest
 
     if doctest.testmod().failed == 0:
-        print("*** ALL TESTS PASSED; YOU MUST BE DIZZY WITH JOY! ***")
+        print("*** ALL TESTS PASSED***")
     print()
-
