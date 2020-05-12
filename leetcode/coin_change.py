@@ -19,14 +19,7 @@ You may assume that you have an infinite number of each kind of coin.
 
 
 def coin_change(coins, amount):
-    min_combos = [float('inf')] * (amount + 1)
-    min_combos[0] = 0
 
-    for coin in coins:
-        for i in range(coin, amount + 1):
-            min_combos[i] = min(min_combos[i], min_combos[i - coin] + 1)
-
-    return min_combos[amount] if min_combos[amount] != float('inf') else -1
 
 
 print(coin_change([2, 4, 5], 11), 'expected: 3')
