@@ -19,7 +19,14 @@ You may assume that you have an infinite number of each kind of coin.
 
 
 def coin_change(coins, amount):
+    fewest_coins = [float('inf')] * (amount + 1)
+    fewest_coins[0] = 0
 
+    for coin in coins:
+        for i in range(coin, amount + 1):
+            fewest_coins[i] = min(fewest_coins[i], fewest_coins[i - coin] + 1)
+
+    return fewest_coins[-1] if fewest_coins[-1] != float('inf') else -1
 
 
 print(coin_change([2, 4, 5], 11), 'expected: 3')
