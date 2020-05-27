@@ -106,10 +106,28 @@ class BinaryNode(object):
 
     def is_balanced(self):
         """Is the tree at this node balanced?"""
+        def _node_depth(node):
+            if not node:
+                return 0
+
+            left = _node_depth(node.left)
+            if left is None:
+                return None
+
+            right = _node_depth(node.right)
+            if right is None:
+                return None
+
+            if abs(left - right) > 1:
+                return None
+
+            return max(left, right) + 1
+
+        return _node_depth(self) is not None
 
 
 if __name__ == '__main__':
     import doctest
 
     if doctest.testmod().failed == 0:
-        print("\n*** ALL TEST PASSED! GO GO GO!\n")
+        print("\n*** ALL TEST PASSED.\n")
