@@ -84,3 +84,27 @@ def valid_tic_tac_toe(board):
         return False
 
     return True
+
+
+board1 = ["O  ", "   ", "   "]
+board2 = ["XOX", " X ", "   "]
+board3 = ["XXX", "   ", "OOO"]
+board4 = ["XOX", "O O", "XOX"]
+
+
+class TestValidTicTacToe(unittest.TestCase):
+    def test_o_first(self):
+        self.assertFalse(valid_tic_tac_toe(board1))
+
+    def test_too_many_x(self):
+        self.assertFalse(valid_tic_tac_toe(board2))
+
+    def test_multiple_winners(self):
+        self.assertFalse(valid_tic_tac_toe(board3))
+
+    def test_valid_board(self):
+        self.assertTrue(valid_tic_tac_toe(board4))
+
+
+if __name__ == '__main__':
+    unittest.main()
