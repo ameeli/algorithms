@@ -1,3 +1,6 @@
+import itertools
+import unittest
+
 """
 Additive number is a string whose digits can form additive sequence.
 
@@ -34,3 +37,36 @@ num consists only of digits '0'-'9'.
 Follow up:
 How would you handle overflow for very large input integers?
 """
+
+
+def is_additive_number(num):
+    n = len(num)
+
+    for i, j in itertools.combinations(range(1, n), 2):
+        a, b = num[:i], num[i:j]
+        # If a or b starts with 0, skip number.
+        if a != str(int(a)) or b != str(int(b)):
+            continue
+
+        while j < n:
+            c = str(int(a) + int(b))
+            if not num.startswith(c, j):
+                break
+            j += len(c)
+            a, b = b, c
+
+            if j == n:
+                return True
+
+    return False
+
+
+class TestIsAdditiveNumber(unittest.TestCase):
+    def test_is_additive_number(self):
+        self.test_nums = [('199100199', True), ('0235813', False)]
+        for num, ans in self.test_nums:
+            self.assertIs(is_additive_number(num), ans)
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
