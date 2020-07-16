@@ -8,13 +8,12 @@ def find_second_largest(root_node):
             return find_rightmost(node.right, node)
         return (node, prev)
 
-    largest, second = find_rightmost(root_node)
+    largest, second_largest = find_rightmost(root_node)
 
     if largest.left:
         second_largest, prev = find_rightmost(largest.left)
-        return second_largest.value
-    else:
-        return second.value
+
+    return second_largest.value
 
 
 class Test(unittest.TestCase):
