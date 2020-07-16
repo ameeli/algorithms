@@ -27,6 +27,21 @@ def compute_finonacci_memo(n, memo=None):
     return memo[n]
 
 
+def compute_fibonacci_iterative(n):
+    if n == 1 or n == 0:
+        return n
+
+    prev_prev = 0
+    prev = 1
+
+    for _ in range(n - 1):
+        curr = prev_prev + prev
+        prev_prev = prev
+        prev = curr
+
+    return curr
+
+
 class TestFibonacci(unittest.TestCase):
     test_cases = [(0, 0), (1, 1), (13, 233), (25, 75025)]
 
@@ -37,6 +52,10 @@ class TestFibonacci(unittest.TestCase):
     def test_compute_fibonacci_memo(self):
         for n, ans in self.test_cases:
             self.assertEqual(compute_finonacci_memo(n), ans)
+
+    def test_compute_fibonacci_iterative(self):
+        for n, ans in self.test_cases:
+            self.assertEqual(compute_fibonacci_iterative(n), ans)
 
 
 if __name__ == '__main__':
