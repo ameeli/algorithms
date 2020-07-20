@@ -19,6 +19,23 @@ def contains_cycle(first_node):
     return False
 
 
+def contains_cycle_o1_space(first_node):
+    """Accomplish the above task using O(1) space by using 2 pointers advancing
+    through the linked list at different speeds. If there is a cycle, the
+    faster pointer will lap the slower one."""
+    if first_node and first_node.next:
+        slow_pointer = first_node.next
+        fast_pointer = first_node.next.next
+
+        while fast_pointer:
+            if slow_pointer.value == fast_pointer.value:
+                return True
+            slow_pointer = slow_pointer.next
+            fast_pointer = fast_pointer.next.next
+
+    return False
+
+
 class Test(unittest.TestCase):
 
     class LinkedListNode(object):
