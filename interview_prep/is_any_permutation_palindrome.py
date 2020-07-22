@@ -21,6 +21,19 @@ def has_palindrome_permutation(the_string):
     return True
 
 
+def has_palindrome_permutation(the_string):
+    """Solution with better space complexity."""
+    unpaired_chars = set()
+
+    for char in the_string:
+        if char in unpaired_chars:
+            unpaired_chars.remove(char)
+        else:
+            unpaired_chars.add(char)
+
+    return len(unpaired_chars) <= 1
+
+
 class Test(unittest.TestCase):
 
     def test_permutation_with_odd_number_of_chars(self):
