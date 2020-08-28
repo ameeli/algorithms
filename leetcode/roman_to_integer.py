@@ -63,24 +63,18 @@ def convert_roman_to_integer(roman_num):
         'D': 500,
         'M': 1000
     }
+    int_sum = 0
 
-    converted_int = 0
-    idx = 0
+    for i in range(len(roman_num) - 1):
+        curr_int = roman_to_int[roman_num[i]]
+        next_int = roman_to_int[roman_num[i + 1]]
 
-    while idx < len(roman_num) - 1:
-        curr = roman_to_int[roman_num[idx]]
-        nxt = roman_to_int[roman_num[idx + 1]]
-        if curr >= nxt:
-            converted_int += curr
-            idx += 1
+        if curr_int < next_int:
+            int_sum -= curr_int
         else:
-            converted_int += nxt - curr
-            idx += 2
+            int_sum += curr_int
 
-    if idx == len(roman_num) - 1:
-        converted_int += roman_to_int[roman_num[idx]]
-
-    return converted_int
+    return int_sum + roman_to_int[roman_num[-1]]
 
 
 class TestConvertRomanToInteger(unittest.TestCase):
