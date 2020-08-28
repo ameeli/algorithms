@@ -1,3 +1,5 @@
+import unittest
+
 """
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and
 M.
@@ -49,3 +51,48 @@ Input: "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 """
+
+
+def convert_roman_to_integer(roman_num):
+    roman_to_int = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
+
+    converted_int = 0
+    idx = 0
+
+    while idx < len(roman_num) - 1:
+        curr = roman_to_int[roman_num[idx]]
+        nxt = roman_to_int[roman_num[idx + 1]]
+        if curr >= nxt:
+            converted_int += curr
+            idx += 1
+        else:
+            converted_int += nxt - curr
+            idx += 2
+
+    if idx == len(roman_num) - 1:
+        converted_int += roman_to_int[roman_num[idx]]
+
+    return converted_int
+
+
+class TestConvertRomanToInteger(unittest.TestCase):
+    def test_addition(self):
+        actual = convert_roman_to_integer('LVIII')
+        expected = 58
+        self.assertEqual(actual, expected)
+
+    def test_subtraction(self):
+        actual = convert_roman_to_integer('MCMXCIV')
+        expected = 1994
+        self.assertEqual(actual, expected)
+
+
+unittest.main(verbosity=2)
