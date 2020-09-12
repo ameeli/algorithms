@@ -18,18 +18,13 @@ in the same time step—at least 1 minute has to pass.
 
 def get_max_profit(stock_prices):
     max_profit = stock_prices[1] - stock_prices[0]
-    buy_idx = 0
+    min_price_so_far = stock_prices[0]
 
-    while buy_idx < len(stock_prices) - 1:
-        sell_idx = buy_idx + 1
-
-        while sell_idx < len(stock_prices):
-            profit = stock_prices[sell_idx] - stock_prices[buy_idx]
-            if profit > max_profit:
-                max_profit = profit
-            sell_idx += 1
-
-        buy_idx += 1
+    for i in range(1, len(stock_prices)):
+        curr_price = stock_prices[i]
+        profit = curr_price - min_price_so_far
+        max_profit = max(profit, max_profit)
+        min_price_so_far = min(curr_price, min_price_so_far)
 
     return max_profit
 
