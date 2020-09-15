@@ -34,6 +34,15 @@ def find_unique_delivery_id(delivery_ids):
     return ids_seen.pop()
 
 
+def find_unique_delivery_id_bit(delivery_ids):
+    unique_id = 0
+
+    for delivery_id in delivery_ids:
+        unique_id ^= delivery_id
+
+    return unique_id
+
+
 class Test(unittest.TestCase):
 
     def test_one_drone(self):
