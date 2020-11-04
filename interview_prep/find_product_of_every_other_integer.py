@@ -17,6 +17,25 @@ def get_products_of_all_ints_except_at_index(int_list):
     return products
 
 
+def get_products_of_all_ints_except_at_index(int_list):
+    if len(int_list) < 2:
+        raise Exception('Operation requires at least 2 values.')
+
+    products_of_all_ints_except_at_index = []
+
+    product_so_far = 1
+    for i in range(len(int_list)):
+        products_of_all_ints_except_at_index.append(product_so_far)
+        product_so_far *= int_list[i]
+
+    reverse_product_so_far = 1
+    for i in range(len(int_list) - 1, -1, -1):
+        products_of_all_ints_except_at_index[i] *= reverse_product_so_far
+        reverse_product_so_far *= int_list[i]
+
+    return products_of_all_ints_except_at_index
+
+
 class Test(unittest.TestCase):
 
     def test_small_list(self):
